@@ -14,25 +14,32 @@
 	
 		$('#calendar').fullCalendar({
 
+   defaultView: 'listMonth',
+       listDayFormat: 'dddd, MMMM D, YYYY',
+    aspectRatio: 1.5,
+ 			height: 450,
+
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,listYear'
+				right: 'listMonth,month,basicWeek,basicDay'
+
 			},
+
 
 			displayEventTime: false, // don't show the time column in list view
 
 			// THIS KEY WON'T WORK IN PRODUCTION!!!
 			// To make your own Google API key, follow the directions here:
 			// http://fullcalendar.io/docs/google_calendar/
-			googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+			googleCalendarApiKey: 'AIzaSyD_UPgAKfc6KDcV60ai9pZqgg4UdzO2iNA',
 		
 			// US Holidays
-			events: 'en.usa#holiday@group.v.calendar.google.com',
+			events: 'bascs.org_tan7t037l4jmf2sp6tsjgnkoc8@group.calendar.google.com',
 			
 			eventClick: function(event) {
 				// opens events in a popup window
-				window.open(event.url, 'gcalevent', 'width=700,height=600');
+				// window.open(event.url, 'gcalevent', 'width=700,height=600');
 				return false;
 			},
 			
@@ -62,7 +69,7 @@
 	}
 
 	#calendar {
-		max-width: 900px;
+		max-width: 600px;
 		margin: 0 auto;
 	}
 
