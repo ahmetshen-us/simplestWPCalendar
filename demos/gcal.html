@@ -15,7 +15,7 @@
 		$('#calendar').fullCalendar({
 
    defaultView: 'listMonth',
-       listDayFormat: 'dddd, MMMM D, YYYY',
+   listDayFormat: 'dddd, MMMM D, YYYY',
     aspectRatio: 1.5,
  			height: 450,
 
@@ -27,7 +27,7 @@
 			},
 
 
-			displayEventTime: false, // don't show the time column in list view
+			displayEventTime: true, // don't show the time column in list view
 
 			// THIS KEY WON'T WORK IN PRODUCTION!!!
 			// To make your own Google API key, follow the directions here:
@@ -35,11 +35,12 @@
 			googleCalendarApiKey: 'AIzaSyD_UPgAKfc6KDcV60ai9pZqgg4UdzO2iNA',
 		
 			// US Holidays
-			events: 'bascs.org_tan7t037l4jmf2sp6tsjgnkoc8@group.calendar.google.com',
+			// events: 'bascs.org_tan7t037l4jmf2sp6tsjgnkoc8@group.calendar.google.com',
+			events: 'bascs.org_rg80p4lciqdfhl9hmjgvgq8fe4@group.calendar.google.com',
 			
 			eventClick: function(event) {
 				// opens events in a popup window
-				// window.open(event.url, 'gcalevent', 'width=700,height=600');
+				window.open(event.url, 'gcalevent', 'width=700,height=600');
 				return false;
 			},
 			
