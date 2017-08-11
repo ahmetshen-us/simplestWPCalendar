@@ -26,7 +26,13 @@
 				center: 'title',
 				right: 'listMonth,month,basicWeek,basicDay'
 
-			},
+			},views: {
+        month: { // name of view
+            titleFormat: 'DD, MMMM-MM, YYYY'
+            // other view-specific options here
+        }
+    }
+,
 
 
 			displayEventTime: true, // don't show the time column in list view
