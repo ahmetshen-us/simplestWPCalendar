@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bells</title>
+	</head>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"
+	></script>
+
+	<link
+		rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		crossorigin="anonymous"
+	/>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			padding-top: 50px;
+		}
+
+		body {
+			border: 8px solid lightgreen;
+			border-radius: 20px;
+			padding: 30px;
+			width: 60%;
+			height: 950px;
+			margin: 0 auto;
+			background: url("http://www.arjunsk.com/wp-content/uploads/2016/02/wood-wallpaper.png");
+		}
+
+		#clock {
+			font-size: 60px;
+			font-family: arial;
+			color: white;
+		}
+
+		h2 {
+			text-align: center;
+		}
+		.table {
+			/*font-weight:bold;*/
+			font-size: 1em;
+		}
+	</style>
+	<body>
+		<div id="main-container">
+			<h2 id="clock">00:00:00 AM</h2>
+		</div>
+
+		<div id="bells">
+			<table id="bellTable" class="table table-striped table-dark">
+				<thead>
+					<tr>
+						<th scope="col">Start</th>
+						<th scope="col">End</th>
+						<th scope="col">Period</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>08:00</td>
+						<td>08:15</td>
+						<td>Breakfast(5/6)-Morning Meeting(7/8)</td>
+					</tr>
+					<tr>
+						<td>08:18</td>
+						<td>08:33</td>
+						<td>Breakfast(7/8)-Morning Meeting(5/6)</td>
+					</tr>
+					<tr>
+						<td>08:36</td>
+						<td>09:21</td>
+						<td>1st Period</td>
+					</tr>
+					<tr>
+						<td>09:24</td>
+						<td>10:09</td>
+						<td>2nd Period</td>
+					</tr>
+					<tr>
+						<td>10:12</td>
+						<td>10:57</td>
+						<td>3rd Period</td>
+					</tr>
+					<tr>
+						<td>11:00</td>
+						<td>11:45</td>
+						<td>4th Period</td>
+					</tr>
+					<tr>
+						<td>11:48</td>
+						<td>12:12</td>
+						<td>Lunch 5/6</td>
+					</tr>
+					<tr>
+						<td>11:48</td>
+						<td>12:33</td>
+						<td>5th Period 7/8</td>
+					</tr>
+					<tr>
+						<td>12:15</td>
+						<td>01:00</td>
+						<td>5th Period 5/6</td>
+					</tr>
+					<tr>
+						<td>12:36</td>
+						<td>01:00</td>
+						<td>Lunch 7/8</td>
+					</tr>
+					<tr>
+						<td>01:03</td>
+						<td>01:48</td>
+						<td>6th Period</td>
+					</tr>
+					<tr>
+						<td>01:51</td>
+						<td>02:36</td>
+						<td>7th Period</td>
+					</tr>
+					<tr>
+						<td>02:39</td>
+						<td>03:24</td>
+						<td>8th Period</td>
+					</tr>
+					<tr>
+						<td>03:30</td>
+						<td></td>
+						<td>Dismissal</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<audio preload="none">
+			<source
+				src="https://glpro.s3.amazonaws.com/_util/smpte/111.mp3"
+				type="audio/mpeg"
+			/>
+			This text displays if the audio tag isn't supported.
+		</audio>
+
+		<!-- Button trigger modal -->
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target="#exampleModal"
+		>
+			Enable sound in your browser
+		</button>
+
+		<!-- Modal -->
+		<div
+			class="modal fade"
+			id="exampleModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							Enable sound in your browser
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You can decide to disable entirely the autoplay policy
+						by setting the Chrome flag "Autoplay Policy" to "No user
+						gesture is required" at chrome://flags/#autoplay-policy.
+						This allows you to test your website as if user were
+						strongly engaged with your site and playback autoplay
+						would be always allowed.
+
+						<a
+							href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes"
+							target="_blank"
+							>For More info</a
+						>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal"
+						>
+							Close
+						</button>
+						<button type="button" class="btn btn-primary">
+							Save changes
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var h2 = document.getElementById("clock");
+
+			// display current time by the second
+			function currentTimeUpdate()  {
+				var date = new Date();
+				// console.log(date);
+
+				var hours = date.getHours();
+
+				var minutes = date.getMinutes();
+
+				var seconds = date.getSeconds();
+
+				var ampm = date.getHours() < 12 ? " AM" : " PM";
+
+				//convert military time to standard time
+				if (hours > 0 && hours <= 12) {
+				  hours = hours;
+				} else if (hours > 12) {
+				  hours= (hours - 12);
+				} else if (hours == 0) {
+				  hours = 12;
+				}
+
+				h2.textContent =
+					addZero(hours) +
+					":" +
+					addZero(minutes) +
+					":" +
+					addZero(seconds) +
+					"" +
+					ampm;
+			};
+
+			function addZero(time) {
+				return time < 10 ? "0" + time : time;
+			}
+
+			$(document).ready(function() {
+				alarmSet();
+				currentTimeUpdate();
+			});
+			var table;
+			var rows;
+			var bellTimes;
+			function alarmSet() {
+
+				var col;
+				table = document.getElementById("bellTable");
+				rows = table.rows;
+
+				 bellTimes = [];
+
+				for (var i = 1, row; (row = table.rows[i]); i++) {
+					for (var j = 0; j < 2; j++) {
+						col = row.cells[j];
+						// console.log(col.innerHTML);
+						var time = col.innerHTML;
+						var hour_min = time.split(":");
+						var hour = hour_min[0];
+						var min = hour_min[1];
+						var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+						bellTimes.push(time + ampm);
+					}
+				}
+
+				// console.log(bellTimes);
+
+				var alarmTime = "";
+
+				/*function to calcutate the current time 
+then compare it to the alarmtime and play a sound when they are equal
+*/
+
+				setInterval(function() {
+					currentTimeUpdate();
+					var currentTime = document.getElementById("clock")
+						.innerHTML;
+					// console.log(currentTime)
+
+					bellTimes.forEach(function(alarmTime, index) {
+						// console.log(alarmTime == currentTime);
+						if (alarmTime == currentTime) {
+							// console.log(index);
+
+							rows[parseInt(index / 2)].className = "";
+							rows[parseInt(index / 2) + 1].className = "bg-info";
+
+							document.querySelector("audio").play();
+						}
+					});
+				}, 1000);
+
+				// console.log('currentTime:' + currentTime);
+			}
+
+			// $.ajax({
+			// 	url:
+			// 		"https://docs.google.com/spreadsheets/d/e/2PACX-1vTo7fAv43m7LoZ6DA1QDus3fzJHgQAveaVxW68zv9ttRQEczpFKMhqTEBXZ-4K_pyrMIRJOPf1tQVfg/pubhtml",
+			// 	success: function(data) {
+			// 		console.log(data.indexOf(":"));
+			// 	}
+			// });
+		</script>
+	</body>
+</html>
