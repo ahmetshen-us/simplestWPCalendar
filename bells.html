@@ -41,10 +41,21 @@
 			font-size: 3em;
 			font-family: arial;
 			color: white;
+			text-align: center;
+		}
+		#nextBell{
+			font-size: 2em;
+			font-family: arial;
+			color: white;
+			text-align: center;
+		}
+		#nextBellTime{
+			color:brown;
+			font-weight: bold;
 		}
 
 		h2 {
-			text-align: center;
+			
 		}
 		.table {
 			/*font-weight:bold;*/
@@ -53,8 +64,12 @@
 	</style>
 	<body>
 		<div id="main-container">
-			<h2 id="clock">00:00:00 AM</h2>
-		
+
+				<div id="clock"> 00:00:00 AM</div>
+				<div id="nextBell">Next Bell in <span id="nextBellTime">00:00:00</span> </div>
+
+
+
 
 		
 			<table id="bellTable" class="table table-striped table-dark">
@@ -147,8 +162,8 @@
 						<td>8th Period</td>
 					</tr>
 					<tr>
-						<td>03:30</td>
-						<td></td>
+						<td>03:30</td>	
+					<td style="visibility: hidden">03:45</td>
 						<td>Dismissal</td>
 					</tr>
 
@@ -231,6 +246,7 @@
 		<script type="text/javascript">
 			var h2 = document.getElementById("clock");
 
+
 			// display current time by the second
 			function currentTimeUpdate()  {
 				var date = new Date();
@@ -269,22 +285,71 @@
 
 			$(document).ready(function() {
 				currentTimeUpdate();
-
 				alarmSet();
+				highlightNextBell();
+				console.log(nextBellTime)
 			});
 			var table;
 			var rows;
 			var bellTimes;
 			var currHour;
 			var currMin;
-			function alarmSet() {
+			var col;
+			var nextBellTime="";
+			table = document.getElementById("bellTable");
+			rows = table.rows;
 
-				var col;
-				table = document.getElementById("bellTable");
-				rows = table.rows;
-
-				 bellTimes = [];
+			function highlightNextBell(){
 				 var currentTime = document.getElementById("clock").innerHTML;
+				 var currHour_Min =  currentTime.split(":");
+				  currHour = currHour_Min[0];
+				  currMin = currHour_Min[1];
+				  var curr= currHour+":"+currMin;
+
+				for (var i = 1, row; (row = table.rows[i]); i++) {
+
+						colStart = row.cells[0];
+						var time = colStart.innerHTML;
+						var hour_min = time.split(":");
+						var hour = hour_min[0];
+						var min = hour_min[1];
+						var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+						// hour = (hour < 5 || hour > 12) ? parseInt(hour)+12 : hour;
+						// time=hour+":"+min+""
+						fullTime = time + ampm
+ 
+						if (Date.parse("01/01/2019 "+fullTime) > Date.parse("01/01/2019 "+currentTime)){
+						// console.log(currentTime)
+						// console.log(time + ampm)
+							nextBellTime=fullTime;
+							colStart.className="bg-danger"
+							break;
+						}
+
+						colEnd = row.cells[1];
+						var time = colEnd.innerHTML;
+						var hour_min = time.split(":");
+						var hour = hour_min[0];
+						var min = hour_min[1];
+						var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+
+						// hour = (hour < 5 || hour > 12) ? parseInt(hour)+12 : hour;
+						// time=hour+":"+min+""
+						fullTime = time + ampm
+ 
+						if (Date.parse("01/01/2019 "+fullTime) > Date.parse("01/01/2019 "+currentTime)){
+							nextBellTime=fullTime;
+							colEnd.className="bg-danger"
+							break;
+						}
+
+				}
+
+			}
+			var currentTime=""
+			function alarmSet() {
+				 bellTimes = [];
+				  currentTime = document.getElementById("clock").innerHTML;
 				 var currHour_Min =  currentTime.split(":");
 				  currHour = currHour_Min[0];
 				  currMin = currHour_Min[1];
@@ -335,8 +400,12 @@ then compare it to the alarmtime and play a sound when they are equal
 
 				setInterval(function() {
 					currentTimeUpdate();
-					var currentTime = document.getElementById("clock")
+					nextBellCountDowner();
+					 currentTime = document.getElementById("clock")
 						.innerHTML;
+
+					
+
 					// console.log(currentTime)
 
 					bellTimes.forEach(function(alarmTime, index) {
@@ -344,8 +413,14 @@ then compare it to the alarmtime and play a sound when they are equal
 						if (alarmTime == currentTime) {
 							// console.log(index);
 
-							rows[parseInt(index / 2)].className = "";
+							for (let row of rows){
+								row.className = "";
+								row.children[0].className=""
+								row.children[1].className=""
+								}
+
 							rows[parseInt(index / 2) + 1].className = "bg-info";
+							highlightNextBell();
 
 							document.querySelector("audio").play();
 						}
@@ -353,6 +428,29 @@ then compare it to the alarmtime and play a sound when they are equal
 				}, 1000);
 
 				// console.log('currentTime:' + currentTime);
+			}
+
+			function nextBellCountDowner(){
+				// console.log(currentTime)
+					var nextBellCountDown = document.getElementById("nextBellTime");
+					// console.log(nextBellCountDown)
+
+					var t = Date.parse("01/01/2019 "+nextBellTime) - Date.parse(new Date("01/01/2019 "+currentTime));
+					var seconds = Math.floor( (t/1000) % 60 );
+					var minutes = Math.floor( (t/1000/60) % 60 );
+					var hours = Math.floor( (t/(1000*60*60)) % 24 );
+					// var days = Math.floor( t/(1000*60*60*24) );
+
+					// console.log(hours+":"+minutes+":"+seconds)
+					nextBellCountDown.innerHTML=
+					addZero(hours) +
+					":" +
+					addZero(minutes) +
+					":" +
+					addZero(seconds) 
+
+
+
 			}
 
 			
