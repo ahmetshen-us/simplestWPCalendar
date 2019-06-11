@@ -284,9 +284,12 @@
 			}
 
 			$(document).ready(function() {
+
 				currentTimeUpdate();
-				alarmSet();
 				highlightNextBell();
+				alarmSet();
+				
+				nextBellCountDowner();
 				console.log(nextBellTime)
 			});
 			var table;
