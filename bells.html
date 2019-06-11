@@ -66,7 +66,7 @@
 		<div id="main-container">
 
 				<div id="clock"> 00:00:00 AM</div>
-				<div id="nextBell">Next Bell in <span id="nextBellTime">00:00:00</span> </div>
+				<div id="nextBell">Next Bell in <span id="nextBellTime">00:00</span> </div>
 
 
 
@@ -441,13 +441,13 @@ then compare it to the alarmtime and play a sound when they are equal
 					var t = Date.parse("01/01/2019 "+nextBellTime) - Date.parse(new Date("01/01/2019 "+currentTime));
 					var seconds = Math.floor( (t/1000) % 60 );
 					var minutes = Math.floor( (t/1000/60) % 60 );
-					var hours = Math.floor( (t/(1000*60*60)) % 24 );
+					// var hours = Math.floor( (t/(1000*60*60)) % 24 );
 					// var days = Math.floor( t/(1000*60*60*24) );
 
 					// console.log(hours+":"+minutes+":"+seconds)
 					nextBellCountDown.innerHTML=
-					addZero(hours) +
-					":" +
+					// addZero(hours) +
+					// ":" +
 					addZero(minutes) +
 					":" +
 					addZero(seconds) 
