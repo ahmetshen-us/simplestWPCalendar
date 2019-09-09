@@ -83,91 +83,83 @@
 				<tbody>
 					<tr>
 						<td>08:00</td>
-						<td>08:15</td>
-						<td>Breakfast(5/6)-Morning Meeting(7/8)</td>
+						<td>08:05</td>
+						<td>Lockers</td>
 					</tr>
 					<tr>
+						<td>08:05</td>
 						<td>08:18</td>
-						<td>08:33</td>
-						<td>Breakfast(7/8)-Morning Meeting(5/6)</td>
+						<td>Breakfast</td>
 					</tr>
 					<tr>
-						<td>08:36</td>
-						<td>09:21</td>
-						<td>1st Period</td>
+						<td>08:21</td>
+						<td>08:34</td>
+						<td>Morning Meeting</td>
 					</tr>
 					<tr>
-						<td>09:24</td>
-						<td>10:09</td>
-						<td>2nd Period</td>
+						<td>08:37</td>
+						<td>09:22</td>
+						<td>Period 1</td>
+					</tr>
+
+					<tr>
+						<td>09:25</td>
+						<td>10:10</td>
+						<td>Period 2</td>
 					</tr>
 					<tr>
-						<td>10:12</td>
-						<td>10:57</td>
-						<td>3rd Period</td>
+						<td>10:13</td>
+						<td>10:58</td>
+						<td>Period 3</td>
 					</tr>
 					<tr>
-						<td>11:00</td>
-						<td>11:45</td>
-						<td>4th Period</td>
+						<td>11:01</td>
+						<td>11:46</td>
+						<td>Period 4</td>
 					</tr>
 					<tr>
-						<td>11:00</td>
-						<td>11:24</td>
-						<td>Lunch K/1</td>
-					</tr>
-					<tr>
-						<td>11:27</td>
-						<td>12:02</td>
-						<td>4th Period K/1</td>
-					</tr>
-					<tr>
-						<td>11:48</td>
+						<td>11:49</td>
 						<td>12:12</td>
 						<td>Lunch 5/6</td>
 					</tr>
 					<tr>
-						<td>11:48</td>
-						<td>12:33</td>
-						<td>5th Period 7/8</td>
-					</tr>
-					<tr>
-						<td>12:05</td>
-						<td>01:00</td>
-						<td>5th Period K/1</td>
+						<td>11:49</td>
+						<td>12:34</td>
+						<td>Period 5(7/8)</td>
 					</tr>
 					<tr>
 						<td>12:15</td>
-						<td>01:00</td>
-						<td>5th Period 5/6</td>
+						<td>1:00</td>
+						<td>Period 5(5/6)</td>
 					</tr>
 					<tr>
-						<td>12:36</td>
-						<td>01:00</td>
+						<td>12:37</td>
+						<td>1:00</td>
 						<td>Lunch 7/8</td>
 					</tr>
+
 					<tr>
 						<td>01:03</td>
 						<td>01:48</td>
-						<td>6th Period</td>
+						<td>Period 6</td>
 					</tr>
+
 					<tr>
 						<td>01:51</td>
 						<td>02:36</td>
-						<td>7th Period</td>
+						<td>Period 7</td>
 					</tr>
 					<tr>
 						<td>02:39</td>
 						<td>03:24</td>
-						<td>8th Period</td>
-					</tr>
+						<td>Period 8</td>
+					</tr>					
 					<tr>
-						<td>03:30</td>	
+						<td>03:30</td>
 					<td style="visibility: hidden">03:45</td>
+
 						<td>Dismissal</td>
 					</tr>
-
-
 				</tbody>
 			</table>
 		</div>
@@ -187,6 +179,13 @@
 			data-target="#exampleModal"
 		>
 			Enable sound in your browser
+		</button>
+
+		<button
+		onclick='document.querySelector("audio").play();'
+			type="button"
+			class="btn btn-primary">
+			Play Bell Sound
 		</button>
 
 		<!-- Modal -->
@@ -244,6 +243,21 @@
 		</div>
 
 		<script type="text/javascript">
+
+// 			xmlhttp = new XMLHttpRequest();
+// xmlhttp.open("HEAD", "https://www.google.com",true);
+// xmlhttp.onreadystatechange=function() {
+//     if (xmlhttp.readyState==4) {
+//         console.log(xmlhttp.getAllResponseHeaders());
+//         console.log(xmlhttp.getResponseHeader("date:"));
+//     }
+// }
+// xmlhttp.send(null);
+
+
+
+
+
 			var h2 = document.getElementById("clock");
 
 
