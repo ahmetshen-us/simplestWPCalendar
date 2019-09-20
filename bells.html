@@ -163,13 +163,23 @@
 				</tbody>
 			</table>
 		</div>
-		<audio preload="none">
+		<audio id="bellAudio" preload="none">
 			<source
 				src="./sounds/arpeggio.mp3"
 				type="audio/mpeg"
 			/>
 			This text displays if the audio tag isn't supported.
 		</audio>
+
+		<audio id="pledgeAudio" preload="auto">
+			<source
+				src="./sounds/100PoplarAvePledge.mp3"
+				type="audio/mpeg"
+			/>
+			This text displays if the audio tag isn't supported.
+		</audio>
+
+
 
 		<!-- Button trigger modal -->
 		<button
@@ -181,11 +191,21 @@
 			Enable sound in your browser
 		</button>
 
+
+
 		<button
-		onclick='document.querySelector("audio").play();'
+		onclick='document.querySelector("#bellAudio").play();'
 			type="button"
 			class="btn btn-primary">
 			Play Bell Sound
+		</button>
+
+		<button
+		onclick='document.querySelector("#pledgeAudio").play();'
+			type="button"
+			class="btn btn-primary"
+			id="playpledge">
+			Play Pledge
 		</button>
 
 		<!-- Modal -->
@@ -421,8 +441,6 @@ then compare it to the alarmtime and play a sound when they are equal
 					 currentTime = document.getElementById("clock")
 						.innerHTML;
 
-					
-
 					// console.log(currentTime)
 
 					bellTimes.forEach(function(alarmTime, index) {
@@ -439,9 +457,25 @@ then compare it to the alarmtime and play a sound when they are equal
 							rows[parseInt(index / 2) + 1].className = "bg-info";
 							highlightNextBell();
 
-							document.querySelector("audio").play();
+							document.querySelector("#bellAudio").play();
 						}
 					});
+
+						// <td style="display: none;">08:40</td>
+
+
+					if(currentTime == "08:40:00 AM"){
+							
+      document.querySelector("#pledgeAudio").play(); // this did not work
+      // document.querySelector("#playpledge").click();
+
+
+ 
+
+
+
+					}
+
 				}, 1000);
 
 				// console.log('currentTime:' + currentTime);
