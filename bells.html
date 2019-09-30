@@ -168,7 +168,7 @@
 				src="./sounds/arpeggio.mp3"
 				type="audio/mpeg"
 			/>
-			This text displays if the audio tag isn't supported.
+			bellAudio This text displays if the audio tag isn't supported.
 		</audio>
 
 		<audio id="pledgeAudio" preload="auto">
@@ -176,10 +176,16 @@
 				src="./sounds/100PoplarAvePledge.mp3"
 				type="audio/mpeg"
 			/>
-			This text displays if the audio tag isn't supported.
+			pledgeAudio This text displays if the audio tag isn't supported.
 		</audio>
 
-
+		<audio id="schoolSong" preload="auto">
+			<source
+				src="./sounds/BASCSAlmaMater6-7-13.mp3"
+				type="audio/mpeg"
+			/>
+			schoolSong This text displays if the audio tag isn't supported.
+		</audio>
 
 		<!-- Button trigger modal -->
 		<button
@@ -206,6 +212,14 @@
 			class="btn btn-primary"
 			id="playpledge">
 			Play Pledge
+		</button>
+
+		<button
+		onclick='document.querySelector("#schoolSong").play();'
+			type="button"
+			class="btn btn-primary"
+			id="playsong">
+			Play School Song
 		</button>
 
 		<!-- Modal -->
@@ -275,7 +289,11 @@
 // xmlhttp.send(null);
 
 
-
+document.getElementById('pledgeAudio').addEventListener('ended',myHandler,false);
+    function myHandler(e) {
+        console.log("ended");
+        document.querySelector("#schoolSong").play();
+    }
 
 
 			var h2 = document.getElementById("clock");
