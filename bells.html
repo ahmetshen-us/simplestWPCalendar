@@ -14,16 +14,16 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<style type="text/css">
-		* {
+/*		* {
 			box-sizing: border-box;
-		}
+		}*/
 
 		html {
 			padding-top: 50px;
 		}
 
 		body {
-			border: 8px solid lightgreen;
+			/*border: 8px solid lightgreen;*/
 			border-radius: 20px;
 			padding: 30px;
 			width: 90%;
@@ -54,8 +54,15 @@
 		}
 		.table {
 			/*font-weight:bold;*/
-			font-size: 1em;
+			font-size: 0.9em;
 		}
+
+		div.fixed {
+		  position: fixed;
+		  width: 100%;
+		  bottom: 10px;
+		  /*border: 3px solid #8AC007;*/
+		} 
 	</style>
 	<body>
 		<div id="main-container">
@@ -99,32 +106,40 @@
 			schoolSong This text displays if the audio tag isn't supported.
 		</audio>
 
+
+
+<div class="fixed">
 		<!-- Button trigger modal -->
 		<button
 			type="button"
-			class="btn btn-primary"
+			class="btn btn-primary btn-lg"
 			data-toggle="modal"
 			data-target="#exampleModal"
 		>
 			Enable sound in your browser
 		</button>
 
-
-
-		<button onclick='a_func("#bellAudio","#pledgeAudio","#schoolSong")'
+		<button onclick='stopAudios("#schoolSong","#bellAudio","#pledgeAudio")'
 			type="button"
-			class="btn btn-primary"
+			class="btn btn-danger btn-lg"
+			id="playsong"> Stop!</button>
+
+		<button onclick='playAndPause("#bellAudio","#pledgeAudio","#schoolSong")'
+			type="button"
+			class="btn btn-primary btn-lg"
 			id="playbell"> Play Bell Sound </button> 
 
-		<button onclick='a_func("#pledgeAudio","#bellAudio","#schoolSong")'
+		<button onclick='playAndPause("#pledgeAudio","#bellAudio","#schoolSong")'
 			type="button"
-			class="btn btn-primary"
+			class="btn btn-primary btn-lg"
 			id="playpledge"> Play Pledge </button>
 
-		<button onclick='a_func("#schoolSong","#bellAudio","#pledgeAudio")'
+		<button onclick='playAndPause("#schoolSong","#bellAudio","#pledgeAudio")'
 			type="button"
-			class="btn btn-primary"
-			id="playsong"> Play School Song </button>
+			class="btn btn-primary btn-lg"
+			id="playsong"> Play School Song </button>		
+</div>
+
 
 		<!-- Modal -->
 		<div
@@ -181,7 +196,7 @@
 		</div>
 
 <script type="text/javascript">
-function a_func(id1,id2,id3) {
+function playAndPause(id1,id2,id3) {
     document.querySelector(id1).play();
     document.querySelector(id2).pause();
     document.querySelector(id2).currentTime = 0;
@@ -189,10 +204,18 @@ function a_func(id1,id2,id3) {
     document.querySelector(id3).currentTime = 0;
 }
 
+function stopAudios(id1,id2,id3) {
+    document.querySelector(id1).pause();
+    document.querySelector(id1).currentTime = 0;
+    document.querySelector(id2).pause();
+    document.querySelector(id2).currentTime = 0;
+    document.querySelector(id3).pause();
+    document.querySelector(id3).currentTime = 0;
+}
 
 
+// play school song when pledge audio ends
 document.getElementById('pledgeAudio').addEventListener('ended', myHandler, false);
-
 function myHandler(e) {
     console.log("ended");
     document.querySelector("#schoolSong").play();
