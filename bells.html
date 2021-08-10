@@ -111,17 +111,17 @@
 
 
 
-		<button onclick='a_func()'
+		<button onclick='a_func("#bellAudio","#pledgeAudio","#schoolSong")'
 			type="button"
 			class="btn btn-primary"
-			id="playBell"> Play Bell Sound </button> 
+			id="playbell"> Play Bell Sound </button> 
 
-		<button onclick='document.querySelector("#pledgeAudio").play();'
+		<button onclick='a_func("#pledgeAudio","#bellAudio","#schoolSong")'
 			type="button"
 			class="btn btn-primary"
 			id="playpledge"> Play Pledge </button>
 
-		<button onclick='document.querySelector("#schoolSong").play();'
+		<button onclick='a_func("#schoolSong","#bellAudio","#pledgeAudio")'
 			type="button"
 			class="btn btn-primary"
 			id="playsong"> Play School Song </button>
@@ -181,10 +181,12 @@
 		</div>
 
 <script type="text/javascript">
-function a_func() {
-    document.querySelector("#bellAudio").play();
-    document.querySelector("#pledgeAudio").pause();
-    document.querySelector("#pledgeAudio").currentTime = 0;
+function a_func(id1,id2,id3) {
+    document.querySelector(id1).play();
+    document.querySelector(id2).pause();
+    document.querySelector(id2).currentTime = 0;
+    document.querySelector(id3).pause();
+    document.querySelector(id3).currentTime = 0;
 }
 
 
