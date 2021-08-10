@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Bells</title>
-	</head>
-	<script
-		src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-		crossorigin="anonymous"
-	></script>
+	<head><title>Bells</title></head>
 
-	<link
-		rel="stylesheet"
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+
+	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-		crossorigin="anonymous"
-	/>
+		crossorigin="anonymous" />
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -64,126 +59,43 @@
 	</style>
 	<body>
 		<div id="main-container">
-
-				<div id="clock"> 00:00:00 AM</div>
-				<div id="nextBell">Next Bell in <span id="nextBellTime">00:00</span> </div>
-
-
-
-
-		
+			<div id="clock"> 00:00:00 AM</div>
+			<div id="nextBell">Next Bell in <span id="nextBellTime">00:00</span></div>
 			<table id="bellTable" class="table table-striped table-dark">
 				<thead>
-					<tr>
-						<th scope="col">Start</th>
-						<th scope="col">End</th>
-						<th scope="col">Period</th>
-					</tr>
+					<tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Period</th></tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>08:00</td>
-						<td>08:05</td>
-						<td>Lockers</td>
-					</tr>
-					<tr>
-						<td>08:05</td>
-						<td>08:18</td>
-						<td>Breakfast</td>
-					</tr>
-					<tr>
-						<td>08:21</td>
-						<td>08:34</td>
-						<td>Morning Meeting</td>
-					</tr>
-					<tr>
-						<td>08:37</td>
-						<td>09:22</td>
-						<td>Period 1</td>
-					</tr>
-
-					<tr>
-						<td>09:25</td>
-						<td>10:10</td>
-						<td>Period 2</td>
-					</tr>
-					<tr>
-						<td>10:13</td>
-						<td>10:58</td>
-						<td>Period 3</td>
-					</tr>
-					<tr>
-						<td>11:01</td>
-						<td>11:46</td>
-						<td>Period 4</td>
-					</tr>
-					<tr>
-						<td>11:49</td>
-						<td>12:12</td>
-						<td>Lunch 5/6</td>
-					</tr>
-					<tr>
-						<td>11:49</td>
-						<td>12:34</td>
-						<td>Period 5(7/8)</td>
-					</tr>
-					<tr>
-						<td>12:15</td>
-						<td>1:00</td>
-						<td>Period 5(5/6)</td>
-					</tr>
-					<tr>
-						<td>12:37</td>
-						<td>1:00</td>
-						<td>Lunch 7/8</td>
-					</tr>
-
-					<tr>
-						<td>01:03</td>
-						<td>01:48</td>
-						<td>Period 6</td>
-					</tr>
-
-					<tr>
-						<td>01:51</td>
-						<td>02:36</td>
-						<td>Period 7</td>
-					</tr>
-					<tr>
-						<td>02:39</td>
-						<td>03:24</td>
-						<td>Period 8</td>
-					</tr>					
-					<tr>
-						<td>03:30</td>
-					<td style="visibility: hidden">03:45</td>
-
-						<td>Dismissal</td>
-					</tr>
+					<tr><td>08:00</td><td>08:05</td><td>Lockers</td></tr>
+					<tr><td>08:05</td><td>08:18</td><td>Breakfast</td></tr>
+					<tr><td>08:21</td><td>08:34</td><td>Morning Meeting</td></tr>
+					<tr><td>08:37</td><td>09:22</td><td>Period 1</td></tr>
+					<tr><td>09:25</td><td>10:10</td><td>Period 2</td></tr>
+					<tr><td>10:13</td><td>10:58</td><td>Period 3</td></tr>
+					<tr><td>11:01</td><td>11:46</td><td>Period 4</td></tr>
+					<tr><td>11:49</td><td>12:12</td><td>Lunch 5/6</td></tr>
+					<tr><td>11:49</td><td>12:34</td><td>Period 5(7/8)</td></tr>
+					<tr><td>12:15</td><td>1:00</td><td>Period 5(5/6)</td></tr>
+					<tr><td>12:37</td><td>1:00</td><td>Lunch 7/8</td></tr>
+					<tr><td>01:03</td><td>01:48</td><td>Period 6</td></tr>
+					<tr><td>01:51</td><td>02:36</td><td>Period 7</td></tr>
+					<tr><td>02:39</td><td>03:24</td><td>Period 8</td></tr>				
+					<tr><td>03:30</td><td style="visibility: hidden">03:45</td><td>Dismissal</td></tr>
 				</tbody>
 			</table>
 		</div>
 		<audio id="bellAudio" preload="none">
-			<source
-				src="./sounds/arpeggio.mp3"
-				type="audio/mpeg"
-			/>
+			<source src="./sounds/arpeggio.mp3" type="audio/mpeg"/>
 			bellAudio This text displays if the audio tag isn't supported.
 		</audio>
 
 		<audio id="pledgeAudio" preload="auto">
-			<source
-				src="./sounds/100PoplarAvePledge.mp3"
-				type="audio/mpeg"
-			/>
+			<source src="./sounds/100PoplarAvePledge.mp3" type="audio/mpeg"/>
 			pledgeAudio This text displays if the audio tag isn't supported.
 		</audio>
 
 		<audio id="schoolSong" preload="auto">
-			<source
-				src="./sounds/BASCSAlmaMater6-7-13.mp3"
-				type="audio/mpeg"
-			/>
+			<source src="./sounds/BASCSAlmaMater6-7-13.mp3" type="audio/mpeg"/>
 			schoolSong This text displays if the audio tag isn't supported.
 		</audio>
 
@@ -199,28 +111,20 @@
 
 
 
-		<button
-		onclick='document.querySelector("#bellAudio").play();'
-			type="button"
-			class="btn btn-primary">
-			Play Bell Sound
-		</button>
-
-		<button
-		onclick='document.querySelector("#pledgeAudio").play();'
+		<button onclick='a_func()'
 			type="button"
 			class="btn btn-primary"
-			id="playpledge">
-			Play Pledge
-		</button>
+			id="playBell"> Play Bell Sound </button> 
 
-		<button
-		onclick='document.querySelector("#schoolSong").play();'
+		<button onclick='document.querySelector("#pledgeAudio").play();'
 			type="button"
 			class="btn btn-primary"
-			id="playsong">
-			Play School Song
-		</button>
+			id="playpledge"> Play Pledge </button>
+
+		<button onclick='document.querySelector("#schoolSong").play();'
+			type="button"
+			class="btn btn-primary"
+			id="playsong"> Play School Song </button>
 
 		<!-- Modal -->
 		<div
@@ -277,16 +181,12 @@
 		</div>
 
 		<script type="text/javascript">
+			function a_func(){
+				document.querySelector("#bellAudio").play();
+				document.querySelector("#pledgeAudio").pause();
+				document.querySelector("#pledgeAudio").currentTime = 0;
+			}
 
-// 			xmlhttp = new XMLHttpRequest();
-// xmlhttp.open("HEAD", "https://www.google.com",true);
-// xmlhttp.onreadystatechange=function() {
-//     if (xmlhttp.readyState==4) {
-//         console.log(xmlhttp.getAllResponseHeaders());
-//         console.log(xmlhttp.getResponseHeader("date:"));
-//     }
-// }
-// xmlhttp.send(null);
 
 
 document.getElementById('pledgeAudio').addEventListener('ended',myHandler,false);
@@ -541,6 +441,15 @@ then compare it to the alarmtime and play a sound when they are equal
 			// 		console.log(data.indexOf(":"));
 			// 	}
 			// });
+			// 			xmlhttp = new XMLHttpRequest();
+// xmlhttp.open("HEAD", "https://www.google.com",true);
+// xmlhttp.onreadystatechange=function() {
+//     if (xmlhttp.readyState==4) {
+//         console.log(xmlhttp.getAllResponseHeaders());
+//         console.log(xmlhttp.getResponseHeader("date:"));
+//     }
+// }
+// xmlhttp.send(null);
 		</script>
 	</body>
 </html>
