@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Bells</title></head>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+/*		* {
+			box-sizing: border-box;
+		}*/
+
+		html {
+			/*padding-top: 50px;*/
+		}
+
+		body {
+			/*border: 8px solid lightgreen;*/
+			border-radius: 20px;
+			/*padding: 30px;*/
+			width: 90%;
+			height: 1000px;
+			margin: 0 auto;
+			background: url("./wood-wallpaper2.jpg");
+		}
+
+		#clock {
+			font-size: 3em;
+			font-family: arial;
+			color: white;
+			text-align: center;
+		}
+		#nextBell{
+			font-size: 2em;
+			font-family: arial;
+			color: white;
+			text-align: center;
+		}
+		#nextBellTime{
+			color:brown;
+			font-weight: bold;
+		}
+
+		.table {
+			/*font-weight:bold;*/
+			font-size: 0.9em;
+		}
+
+		div.fixed {
+		  position: fixed;
+		  width: 100%;
+		  bottom: 10px;
+		  /*border: 3px solid #8AC007;*/
+		} 
+	</style>
+	<body>
+		<div id="main-container">
+			<div id="clock"> 00:00:00 AM</div>
+			<div id="nextBell">Next Bell in <span id="nextBellTime">00:00</span></div>
+			<div id="nextBell">Next Bell in <span id="nextBellTime2">00:00</span></div>
+			<table id="bellTable" class="table table-striped table-dark">
+				<thead>
+					<tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Period</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>12:00</td><td>12:01</td><td>Period 5(5/6)</td></tr>
+					<tr><td>12:02</td><td>12:03</td><td>Period 5(5/6)</td></tr>
+					<tr><td>12:04</td><td>12:05</td><td>Period 5(5/6)</td></tr>
+					<tr><td>12:20</td><td>12:22</td><td>Period 5(5/6)</td></tr>
+					<tr><td>12:24</td><td>12:26</td><td>Period 5(5/6)</td></tr>
+
+					<!-- <tr><td>03:30</td><td style="visibility: hidden">03:45</td><td>Dismissal</td></tr> -->
+					<tr><td>03:30</td><td>03:45</td><td>Dismissal</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<audio id="bellAudio" preload="none">
+			<source src="./sounds/arpeggio.mp3" type="audio/mpeg"/>
+			bellAudio This text displays if the audio tag isn't supported.
+		</audio>
+
+		<audio id="pledgeAudio" preload="auto">
+			<source src="./sounds/100PoplarAvePledge.mp3" type="audio/mpeg"/>
+			pledgeAudio This text displays if the audio tag isn't supported.
+		</audio>
+
+		<audio id="schoolSong" preload="auto">
+			<source src="./sounds/BASCSAlmaMater6-7-13.mp3" type="audio/mpeg"/>
+			schoolSong This text displays if the audio tag isn't supported.
+		</audio>
+
+
+
+<div class="fixed">
+		<!-- Button trigger modal -->
+		<button
+			type="button"
+			class="btn btn-primary btn-lg"
+			data-toggle="modal"
+			data-target="#exampleModal"
+		>
+			Enable sound in your browser
+		</button>
+
+		<button onclick='stopAudios("#schoolSong","#bellAudio","#pledgeAudio")'
+			type="button"
+			class="btn btn-danger btn-lg"
+			id="playsong"> Stop!</button>
+
+		<button onclick='playAndPause("#bellAudio","#pledgeAudio","#schoolSong")'
+			type="button"
+			class="btn btn-primary btn-lg"
+			id="playbell"> <i class="fa fa-bell" style="font-size:30px;color:red"> </i> Play Bell Sound </button> 
+
+		<button onclick='playAndPause("#pledgeAudio","#bellAudio","#schoolSong")'
+			type="button"
+			class="btn btn-primary btn-lg"
+			id="playpledge"> Play Pledge </button>
+
+		<button onclick='playAndPause("#schoolSong","#bellAudio","#pledgeAudio")'
+			type="button"
+			class="btn btn-primary btn-lg"
+			id="playsong"> Play School Song </button>		
+</div>
+
+
+		<!-- Modal -->
+		<div
+			class="modal fade"
+			id="exampleModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							Enable sound in your browser
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You can decide to disable entirely the autoplay policy
+						by setting the Chrome flag "Autoplay Policy" to "No user
+						gesture is required" at 
+						<a href="chrome://flags/#autoplay-policy">chrome://flags/#autoplay-policy</a>
+						This allows you to test your website as if user were
+						strongly engaged with your site and playback autoplay
+						would be always allowed.
+
+						<a
+							href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes"
+							target="_blank"
+							>For More info</a
+						>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal"
+						>
+							Close
+						</button>
+<!-- 						<button type="button" class="btn btn-primary">
+							Save changes
+						</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+<script type="text/javascript">
+
+function playAndPause(id1,id2,id3) {
+    document.querySelector(id1).play();
+    document.querySelector(id2).pause();
+    document.querySelector(id2).currentTime = 0;
+    document.querySelector(id3).pause();
+    document.querySelector(id3).currentTime = 0;
+}
+
+function stopAudios(id1,id2,id3) {
+    document.querySelector(id1).pause();
+    document.querySelector(id1).currentTime = 0;
+    document.querySelector(id2).pause();
+    document.querySelector(id2).currentTime = 0;
+    document.querySelector(id3).pause();
+    document.querySelector(id3).currentTime = 0;
+}
+
+
+// play school song when pledge audio ends
+document.getElementById('pledgeAudio').addEventListener('ended', myHandler, false);
+function myHandler(e) {
+    console.log("ended");
+    document.querySelector("#schoolSong").play();
+}
+
+
+var clockElement = document.getElementById("clock");
+
+// display current time by the second
+function currentTimeUpdate() {
+    var date = new Date();
+    // console.log(date);
+
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    var ampm = date.getHours() < 12 ? "AM" : "PM";
+
+    //convert military time to standard time
+    if (hours > 12) {
+        hours = (hours - 12);
+    } else if (hours == 0) {
+        hours = 12;
+    }
+
+    clockElement.textContent = addZero(hours) +":" + addZero(minutes) + ":" + addZero(seconds) + " " +ampm;
+};
+
+function addZero(time) {
+    return time < 10 ? "0" + time : time;
+}
+
+$(document).ready(function() {
+
+    currentTimeUpdate();
+    highlightNextBell();
+    alarmSet();
+
+    nextBellCountDowner();
+
+});
+
+var table;
+var rows;
+var bellTimes;
+var currHour;
+var currMin;
+var col;
+var nextBellTime = "";
+table = document.getElementById("bellTable");
+rows = table.rows;
+
+function highlightNextBell() {
+    var currentTime = document.getElementById("clock").innerHTML;
+    var currHour_Min = currentTime.split(":");
+    currHour = currHour_Min[0];
+    currMin = currHour_Min[1];
+    var curr = currHour + ":" + currMin;
+
+    for (var i = 1, row;(row = table.rows[i]); i++) {
+
+        colStart = row.cells[0];
+        var time = colStart.innerHTML;
+        var hour_min = time.split(":");
+        var hour = hour_min[0];
+        var min = hour_min[1];
+        var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+        // hour = (hour < 5 || hour > 12) ? parseInt(hour)+12 : hour;
+        // time=hour+":"+min+""
+        fullTime = time + ampm
+
+        if (Date.parse("01/01/2019 " + fullTime) > Date.parse("01/01/2019 " + currentTime)) {
+            // console.log(currentTime)
+            // console.log(time + ampm)
+            nextBellTime = fullTime;
+            colStart.className = "bg-danger"
+            break;
+        }
+
+        colEnd = row.cells[1];
+        var time = colEnd.innerHTML;
+        var hour_min = time.split(":");
+        var hour = hour_min[0];
+        var min = hour_min[1];
+        var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+
+        // hour = (hour < 5 || hour > 12) ? parseInt(hour)+12 : hour;
+        // time=hour+":"+min+""
+        fullTime = time + ampm
+
+        if (Date.parse("01/01/2019 " + fullTime) > Date.parse("01/01/2019 " + currentTime)) {
+            nextBellTime = fullTime;
+            colEnd.className = "bg-danger"
+            break;
+        }
+
+    }
+
+}
+var currentTime = ""
+
+function alarmSet() {
+    bellTimes = [];
+    currentTime = document.getElementById("clock").innerHTML;
+    var currHour_Min = currentTime.split(":");
+    currHour = currHour_Min[0];
+    currMin = currHour_Min[1];
+    var curr = currHour + ":" + currMin;
+
+    for (var i = 1, row;(row = table.rows[i]); i++) {
+        colStart = row.cells[0];
+        // console.log(col.innerHTML);
+        var time = colStart.innerHTML;
+        var hour_min = time.split(":");
+        var hour = hour_min[0];
+        var min = hour_min[1];
+        var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+        bellTimes.push(time + ampm);
+        var greaterThanStart = currentTime >= time + ampm;
+
+
+
+        colEnd = row.cells[1];
+        // console.log(col.innerHTML);
+        var time = colEnd.innerHTML;
+        var hour_min = time.split(":");
+        var hour = hour_min[0];
+        var min = hour_min[1];
+        var ampm = (hour < 5 || hour == 12) ? ":00 PM" : ":00 AM";
+        bellTimes.push(time + ampm);
+        var lessThanEnd = currentTime <= time + ampm;
+
+        if (greaterThanStart && lessThanEnd) {
+            // console.log(time)
+            row.className = "bg-info";
+        }
+    }
+    table.rows[table.rows.length - 1].className = "";
+
+
+    var alarmTime = "";
+
+    /*function to calcutate the current time 
+then compare it to the alarmtime and play a sound when they are equal
+*/
+
+    setInterval(function() {
+        currentTimeUpdate();
+        nextBellCountDowner();
+        currentTime = document.getElementById("clock")
+            .innerHTML;
+
+        bellTimes.forEach(function(alarmTime, index) {
+            if (alarmTime == currentTime) {
+                for (let row of rows) {
+                    row.className = "";
+                    row.children[0].className = ""
+                    row.children[1].className = ""
+                }
+
+                rows[parseInt(index / 2) + 1].className = "bg-info";
+                highlightNextBell();
+
+                document.querySelector("#bellAudio").play();
+            }
+        });
+
+        // <td style="display: none;">08:40</td>
+
+        if (currentTime == "09:16:00 PM") {
+            document.querySelector("#pledgeAudio").play();
+        }
+
+    }, 1000);
+
+}
+
+function diff_seconds(dt2, dt1) {
+
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  return Math.abs(Math.round(diff));
+  
+ }
+
+
+
+
+function nextBellCountDowner() {
+	dt1 = new Date("01/01/2019 " + nextBellTime);
+	dt2 = new Date("01/01/2019 " + currentTime);
+	var seconds_diff = diff_seconds(dt1, dt2);
+	var minutes_d = addZero(Math.floor(seconds_diff / 60));
+	var seconds_d = addZero(seconds_diff % 60);
+
+	document.getElementById("nextBellTime2").innerHTML =  minutes_d + ":" + seconds_d;
+
+    var nextBellCountDown = document.getElementById("nextBellTime");
+    var t = Date.parse("01/01/2019 " + nextBellTime) - Date.parse(new Date("01/01/2019 " + currentTime));
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    // var hours = Math.floor( (t/(1000*60*60)) % 24 );
+    // var days = Math.floor( t/(1000*60*60*24) );
+
+    // console.log(hours+":"+minutes+":"+seconds)
+    nextBellCountDown.innerHTML =
+        // addZero(hours) +
+        // ":" +
+        addZero(minutes) +
+        ":" +
+        addZero(seconds)
+
+}
+
+
+// var settings={
+// 	"async":true,
+// 	"crossDomain":true,
+// 					"url":
+// 		"https://docs.google.com/spreadsheets/d/e/2PACX-1vTo7fAv43m7LoZ6DA1QDus3fzJHgQAveaVxW68zv9ttRQEczpFKMhqTEBXZ-4K_pyrMIRJOPf1tQVfg/pubhtml"
+
+// }
+// $.ajax(settings).done(function (response) {
+// 	console.log(data.indexOf(":"));
+// });
+
+// $.ajax({
+// 	url:
+// 		"https://docs.google.com/spreadsheets/d/e/2PACX-1vTo7fAv43m7LoZ6DA1QDus3fzJHgQAveaVxW68zv9ttRQEczpFKMhqTEBXZ-4K_pyrMIRJOPf1tQVfg/pubhtml",
+// 	success: function(data) {
+// 		console.log(data.indexOf(":"));
+// 	}
+// });
+// 			xmlhttp = new XMLHttpRequest();
+// xmlhttp.open("HEAD", "https://www.google.com",true);
+// xmlhttp.onreadystatechange=function() {
+//     if (xmlhttp.readyState==4) {
+//         console.log(xmlhttp.getAllResponseHeaders());
+//         console.log(xmlhttp.getResponseHeader("date:"));
+//     }
+// }
+// xmlhttp.send(null);
+</script>
+	</body>
+</html>
