@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bells.js"></script>
 
 	<style type="text/css">
 /*		* {
@@ -72,14 +73,7 @@
 					<tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Period</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>12:00</td><td>12:01</td><td>Period 5(5/6)</td></tr>
-					<tr><td>12:02</td><td>12:03</td><td>Period 5(5/6)</td></tr>
-					<tr><td>12:04</td><td>12:05</td><td>Period 5(5/6)</td></tr>
-					<tr><td>12:20</td><td>12:22</td><td>Period 5(5/6)</td></tr>
-					<tr><td>12:24</td><td>12:26</td><td>Period 5(5/6)</td></tr>
 
-					<!-- <tr><td>03:30</td><td style="visibility: hidden">03:45</td><td>Dismissal</td></tr> -->
-					<tr><td>03:30</td><td>03:45</td><td>Dismissal</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -243,6 +237,35 @@ function addZero(time) {
 }
 
 $(document).ready(function() {
+
+var start_time = "start_time1"
+var end_time = "end_time1"
+var period_name = "period_name1"
+
+
+// var newURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
+
+	which_building = ""
+	if(window.location.pathname.includes("poplar")){
+		which_building = "poplar"
+	}else if(window.location.pathname.includes("franklin")){
+		which_building = "franklin"
+	}
+
+  $.each(bell_periods[which_building], function( key, val ) {
+	var start_time = val[0]
+	var end_time = val[1]
+	var period_name = val[2]
+
+    var markup = "<tr><td>" + start_time + "</td><td>" + end_time + "</td><td>" + period_name + "</td></tr>";
+	$("table tbody").append(markup);
+  });
+
+
+// <!-- <tr><td>03:30</td><td style="visibility: hidden">03:45</td><td>Dismissal</td></tr> -->
+// <tr><td>03:30</td><td>03:45</td><td>Dismissal</td></tr>
+
+
 
     currentTimeUpdate();
     highlightNextBell();
