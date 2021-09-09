@@ -371,7 +371,8 @@ then compare it to the alarmtime and play a sound when they are equal
 
         bellTimes.forEach(function(alarmTime, index) {
             // console.log(alarmTime == currentTime);
-            if (alarmTime == currentTime) {
+            // if (alarmTime == currentTime) {
+			if(new Date().getSeconds() % 10 == 0) {
                 // console.log(index);
 
                 for (let row of rows) {
@@ -383,6 +384,7 @@ then compare it to the alarmtime and play a sound when they are equal
                 rows[parseInt(index / 2) + 1].className = "bg-info";
                 highlightNextBell();
 
+                console.log(currentTime)
                 document.querySelector("#bellAudio").play();
             }
         });
